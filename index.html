@@ -15,58 +15,67 @@ body {
   overflow-x: hidden;
 }
 
-/* Animated background */
+/* Background animation */
 @keyframes gradientBG {
   0% {background-position: 0% 50%;}
   50% {background-position: 100% 50%;}
   100% {background-position: 0% 50%;}
 }
 
+/* PAGE TRANSITION STATES */
+body.exit {
+  transform: translateX(-100px) scale(0.95);
+  opacity: 0;
+  filter: blur(8px);
+  transition: all 0.5s ease;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: #0f0f0f;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+  z-index: 999;
+}
+
+.overlay.active {
+  opacity: 1;
+}
+
 /* HEADER */
 header {
   text-align: center;
   padding: 60px 20px;
-  animation: fadeDown 1s ease;
 }
 
 /* LOGO */
 .logo {
   width: 110px;
-  height: 110px;
   border-radius: 25px;
-  margin-bottom: 15px;
   box-shadow: 0 0 25px rgba(255,60,60,0.6);
-  transition: 0.4s;
-}
-
-.logo:hover {
-  transform: scale(1.1) rotate(3deg);
 }
 
 /* TITLE */
 header h1 {
   font-size: 42px;
-  margin: 10px 0;
-  letter-spacing: 2px;
   background: linear-gradient(45deg, #ff3c3c, #ff7a7a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* SUBTITLE */
-header p {
-  color: #aaa;
-  font-size: 16px;
-}
-
-/* CONTAINER */
+/* CARDS */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* GLASS CARD */
 .card {
   width: 280px;
   margin: 15px;
@@ -75,17 +84,14 @@ header p {
   backdrop-filter: blur(15px);
   background: rgba(255,255,255,0.05);
   text-align: center;
-  transition: 0.4s;
-  animation: fadeUp 1s ease;
+  transition: 0.3s;
 }
 
-/* HOVER EFFECT */
 .card:hover {
   transform: translateY(-10px) scale(1.03);
   box-shadow: 0 0 25px rgba(255,60,60,0.6);
 }
 
-/* BUTTON */
 .btn {
   display: inline-block;
   margin-top: 15px;
@@ -94,50 +100,16 @@ header p {
   border-radius: 10px;
   text-decoration: none;
   color: white;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  box-shadow: 0 0 20px rgba(255,80,80,0.7);
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp {
-  from {opacity:0; transform: translateY(50px);}
-  to {opacity:1; transform: translateY(0);}
-}
-
-@keyframes fadeDown {
-  from {opacity:0; transform: translateY(-50px);}
-  to {opacity:1; transform: translateY(0);}
-}
-
-/* FLOATING PARTICLES */
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.05);
-  animation: float 10s infinite;
-}
-
-@keyframes float {
-  0% {transform: translateY(0);}
-  50% {transform: translateY(-40px);}
-  100% {transform: translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Floating particles -->
-<div class="circle" style="width:120px;height:120px;top:10%;left:10%;"></div>
-<div class="circle" style="width:180px;height:180px;top:60%;left:80%;"></div>
+<div class="overlay" id="overlay"></div>
 
 <header>
-  <!-- LOGO -->
   <img src="Images/logo.jpg" class="logo">
-
   <h1>BrickOS</h1>
   <p>Next-Level Custom ROM Experience</p>
 </header>
@@ -146,23 +118,38 @@ header p {
 
   <div class="card">
     <h3>Redmi 9T</h3>
-    <p>Chime</p>
-    <a href="9t.html" class="btn">Open</a>
+    <a href="9t.html" class="btn nav">Open</a>
   </div>
 
   <div class="card">
     <h3>Xiaomi 11i</h3>
-    <p>Pissarro</p>
-    <a href="11i.html" class="btn">Open</a>
+    <a href="11i.html" class="btn nav">Open</a>
   </div>
 
   <div class="card">
     <h3>Redmi Note 13</h3>
-    <p>Ruby</p>
-    <a href="n13.html" class="btn">Open</a>
+    <a href="n13.html" class="btn nav">Open</a>
   </div>
 
 </div>
+
+<script>
+const overlay = document.getElementById("overlay");
+
+document.querySelectorAll(".nav").forEach(link => {
+  link.addEventListener("click", function(e) {
+    e.preventDefault();
+    const url = this.href;
+
+    overlay.classList.add("active");
+    document.body.classList.add("exit");
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 450);
+  });
+});
+</script>
 
 </body>
 </html>
