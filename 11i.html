@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BrickOS - Xiaomi 11i</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1c3d3a, #6fb3a8, #f5d6c6);
+  color: white;
+}
+
+/* Back button */
+.back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  background: rgba(255,255,255,0.1);
+  padding: 8px 14px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+/* Container */
+.container {
+  padding: 60px 20px 20px;
+  text-align: center;
+}
+
+/* Card */
+.card {
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 25px;
+  animation: fadeUp 1s ease;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+/* Images */
+.rom-img {
+  width: 90%;
+  border-radius: 15px;
+  margin: 12px 0;
+  transition: 0.3s;
+}
+
+.rom-img:hover {
+  transform: scale(1.04);
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: linear-gradient(45deg, #ff7a7a, #ff3c3c);
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px rgba(255,80,80,0.6);
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {opacity:0; transform: translateY(40px);}
+  to {opacity:1; transform: translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="back">⬅ Back</a>
+
+<div class="container">
+  <div class="card">
+    <h2>Xiaomi 11i (Pissarro)</h2>
+    <p>Android 15 • HyperOS 2.2</p>
+
+    <!-- ROM Images -->
+    <img src="images/11i_1.jpg" class="rom-img">
+    <img src="images/11i_2.jpg" class="rom-img">
+
+    <a href="https://t.me/BrickOS_team/211" class="btn">Download via Telegram</a>
+  </div>
+</div>
+
+</body>
+</html>
